@@ -9,8 +9,8 @@ from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-topic = {
-    "Chill Zone":"""
+dirt_topic = {
+    "chill zone":"""
 Chào mừng bạn đến với "Chill Zone" – góc thư giãn tuyệt vời của diễn đàn Sức khỏe
 Tinh thần!
 Đây là nơi bạn có thể thả lỏng tâm hồn, quên đi những áp lực thường ngày và thoải mái chia
@@ -93,7 +93,7 @@ cực ở phần sau, phù hợp với chủ đề.
 Câu cần phân loại: {title}
 """,
 
-    "Mindful Moments":"""
+    "mindful moments":"""
 Chào mừng bạn đến với "Mindful Moments" – góc nhỏ giúp bạn "refresh" tâm trí và tìm lại bình tĩnh giữa cơn bão cuộc sống!
 Đây là nơi bạn có thể chia sẻ và khám phá những cách đơn giản nhưng hiệu quả để chăm sóc sức khỏe tinh thần. Hãy tưởng tượng "Mindful Moments" như một khu vườn ảo yên bình: bạn có thể dừng chân, hít thở sâu, và kể về những khoảnh khắc bạn thực hành chánh niệm, thiền định, hay bất kỳ hoạt động nào giúp bạn "refresh". Bạn có thể chia sẻ cách bạn dùng 5 phút thiền để vượt qua căng thẳng, một bài tập thở giúp bạn bình tĩnh trước buổi thuyết trình, hoặc hỏi cộng đồng về mẹo đối phó với lo âu khi deadline dí sát. Không cần phải là "chuyên gia"—dù bạn mới bắt đầu thử viết nhật ký hay từng "thất bại" trong việc tập yoga, mọi câu chuyện đều đáng được lắng nghe ở đây.
 Mục đích của "Mindful Moments":
@@ -139,7 +139,7 @@ b. Lý do: Mang tính tiêu cực, không khuyến khích (vi phạm tiêu chí 
 Câu cần phân loại: {title}
 """,
 
-    "Relationship 101":"""
+    "relationship 101":"""
 Chào mừng bạn đến với "Relationship 101" – nơi "giải mã" mọi vấn đề trong các mối quan hệ của bạn!
 Đây là không gian để bạn thoải mái chia sẻ và tìm lời khuyên về mọi khía cạnh của các mối quan hệ—từ gia đình, bạn bè, đến crush hay người yêu. Hãy tưởng tượng "Relationship 101" như một quán trà sữa thân thiện: bạn ngồi xuống, nhâm nhi ly trà, và tâm sự về những rắc rối trong tình bạn, tình yêu, hay gia đình. Bạn có thể hỏi cách xử lý một buổi hẹn hò awkward, thảo luận về cách giữ vibe tốt với anh em trong nhóm, hoặc tâm sự về những cảm xúc rối ren khi thích ai đó. Đây cũng là chỗ để học kỹ năng giao tiếp, xây dựng lòng tin, và tìm lại sự kết nối.
 Mục đích của "Relationship 101":
@@ -185,7 +185,7 @@ b. Lý do: Mang tính tiêu cực, không tìm cách giải quyết (vi phạm t
 Câu cần phân loại: {title}
 """,
 
-    "Career Compass":"""
+    "career compass":"""
 Chào mừng bạn đến với "Career Compass" – kim chỉ nam cho hành trình học tập và sự nghiệp của bạn!
 Đây là nơi bạn có thể chia sẻ và tìm lời khuyên về học tập, định hướng nghề nghiệp, và phát triển bản thân. Hãy tưởng tượng "Career Compass" như một buổi tư vấn nghề nghiệp thân thiện: bạn có thể ngồi xuống, chia sẻ về áp lực bài vở, hỏi về cách chọn ngành học, hoặc tâm sự về nỗi lo "phải thành công sớm". Bạn có thể thảo luận về cách cân bằng giữa học và sức khỏe tinh thần, kinh nghiệm tìm thực tập, hoặc cách vượt qua thất bại khi trượt kỳ thi.
 Mục đích của "Career Compass":
@@ -231,7 +231,7 @@ b. Lý do: Tiêu cực, không tìm cách giải quyết (vi phạm tiêu chí 2
 Câu cần phân loại: {title}
 """,
 
-    "Body Positivity":"""
+    "body positivity":"""
 Chào mừng bạn đến với "Body Positivity" – góc an toàn để yêu thương bản thân và "đập tan" những tiêu chuẩn sắc đẹp không thực tế!
 Đây là nơi bạn có thể chia sẻ hành trình chấp nhận và yêu quý cơ thể mình, bất kể ngoại hình ra sao. Hãy tưởng tượng "Body Positivity" như một buổi picnic vui vẻ: bạn có thể đăng ảnh, kể chuyện về những ngày tự ti và khoảnh khắc tự hào, hoặc thảo luận về tác động của mạng xã hội lên hình ảnh bản thân. Bạn có thể hỏi xin lời khuyên về cách xây dựng sự tự tin, chia sẻ bài viết inspirational, hoặc tôn vinh sự đa dạng ngoại hình.
 Mục đích của "Body Positivity":
@@ -277,7 +277,7 @@ b. Lý do: Tiêu cực, không tìm cách cải thiện (vi phạm tiêu chí 2)
 Câu cần phân loại: {title}
 """,
 
-    "Digital Detox":"""
+    "digital detox":"""
 Chào mừng bạn đến với "Digital Detox" – nơi giúp bạn "nghỉ ngơi" khỏi màn hình và sống cân bằng hơn!
 Đây là không gian để bạn chia sẻ và khám phá cách giảm thời gian sử dụng công nghệ, đặc biệt là mạng xã hội, để cải thiện sức khỏe tinh thần. Hãy tưởng tượng "Digital Detox" như một buổi cắm trại ảo: bạn "cất" điện thoại, hít thở không khí trong lành, và kể về lần bạn thử "cai" TikTok nhưng thất bại, hoặc hỏi về ứng dụng hạn chế thời gian online. Bạn có thể thảo luận về FOMO, cyberbullying, hay cảm giác "nghiện" online.
 Mục đích của "Digital Detox":
@@ -323,7 +323,7 @@ b. Lý do: Tiêu cực, không khuyến khích (vi phạm tiêu chí 2).
 Câu cần phân loại: {title}
 """,
 
-    "Lonely Hearts Club":"""
+    "lonely hearts club":"""
 Chào mừng bạn đến với "Lonely Hearts Club" – nơi dành cho những ai đang cảm thấy cô đơn và cần sự đồng hành!
 Đây là không gian ấm áp để bạn tâm sự về cảm giác lạc lõng, chia sẻ khoảnh khắc vượt qua nỗi buồn, hoặc tìm bạn ảo. Hãy tưởng tượng "Lonely Hearts Club" như một buổi campfire ảo: bạn ngồi xuống, chia sẻ câu chuyện, và nhận sự động viên từ cộng đồng. Bạn có thể kể về lần cảm thấy cô đơn giữa đám đông, hỏi cách kết nối với người khác, hoặc tham gia hoạt động như "virtual hangouts".
 Mục đích của "Lonely Hearts Club":
@@ -369,7 +369,7 @@ b. Lý do: Tiêu cực, không hỗ trợ (vi phạm tiêu chí 2).
 Câu cần phân loại: {title}
 """,
 
-    "Purpose Quest":"""
+    "purpose quest":"""
 Chào mừng bạn đến với "Purpose Quest" – hành trình tìm kiếm ý nghĩa cuộc sống!
 Đây là nơi bạn chia sẻ và khám phá mục đích sống, đam mê, và giá trị bản thân. Hãy tưởng tượng "Purpose Quest" như một buổi workshop ảo: bạn có thể kể về lần vượt qua khủng hoảng bản sắc, chia sẻ sách/podcast truyền cảm hứng, hoặc hỏi cách tìm đam mê. Bạn có thể thảo luận về triết lý sống, mục tiêu cá nhân, và cách xây dựng cuộc đời đáng sống.
 Mục đích của "Purpose Quest":
@@ -415,7 +415,7 @@ b. Lý do: Tiêu cực, không tìm cách cải thiện (vi phạm tiêu chí 2)
 Câu cần phân loại: {title}
 """,
 
-    "Creative Outlet":"""
+    "creative outlet":"""
 Chào mừng bạn đến với "Creative Outlet" – sân chơi để bạn bung xõa sự sáng tạo!
 Đây là nơi bạn thể hiện bản thân qua nghệ thuật—viết truyện, vẽ tranh, làm nhạc, sáng tác thơ. Hãy tưởng tượng "Creative Outlet" như một gallery ảo: bạn có thể đăng tác phẩm, nhận feedback, hoặc dùng nghệ thuật để "xả" cảm xúc. Bạn có thể thảo luận về cách sáng tạo giúp cải thiện sức khỏe tinh thần, chia sẻ bài thơ vừa viết, hoặc hỏi cách vượt qua "writer's block".
 Mục đích của "Creative Outlet":
@@ -461,7 +461,7 @@ b. Lý do: Tiêu cực, không hỗ trợ (vi phạm tiêu chí 2).
 Câu cần phân loại: {title}
 """,
 
-    "Ask the Experts":"""
+    "ask the experts":"""
 Chào mừng bạn đến với "Ask the Experts" – kênh để bạn nhận lời khuyên từ các chuyên gia về sức khỏe tinh thần!
 Đây là nơi bạn đặt câu hỏi và nhận câu trả lời từ chuyên gia tâm lý, tư vấn viên, hoặc người có kinh nghiệm về sức khỏe tinh thần. Hãy tưởng tượng "Ask the Experts" như một buổi tư vấn ảo: bạn có thể hỏi về cách đối phó với lo âu, trầm cảm, hoặc vấn đề cụ thể như mất ngủ, căng thẳng thi cử. Bạn cũng có thể chia sẻ nguồn tài nguyên hữu ích như bài viết, video, podcast từ chuyên gia.
 Mục đích của "Ask the Experts":
@@ -530,15 +530,15 @@ class ClassificationResponse(BaseModel):
     result: bool
 
 
-@app.post("/classify", response_model=ClassificationResponse)
+@app.post("/classify", response_model=ClassificationResponse, description=str(dirt_topic.keys()))
 async def classify_topic(request: ClassificationRequest):
     topic = (request.topic).lower()
     # Check if topic exists in dirt
-    if topic not in dirt:
+    if topic not in dirt_topic:
         raise HTTPException(status_code=400, detail="Topic not found in dirt")
 
     # Prepare the prompt
-    template = dirt[topic]
+    template = dirt_topic[topic]
     prompt = template.replace("{title}", request.content)
 
     # Define OpenAI function for structured response
